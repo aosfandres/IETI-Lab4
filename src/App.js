@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from "./components/Login";
+import NewTask from "./components/NewTask";
 import { BrowserRouter as Router, Switch, Route,Redirect } from 'react-router-dom';
 import Navigation from './components/Navigation';
 
@@ -60,9 +61,8 @@ class App extends React.Component {
     const changeView=()=>{
       //window.location.href = "/navigation";
       this.setState({ isLoggedIn: 'true' });
-     
-      
     }
+
     const logout=()=>{
         window.location.href = "/";
         this.changeStateFalse();
@@ -71,14 +71,13 @@ class App extends React.Component {
     
     const LoginView = () => (
       <div>
-       
         <Login changeView={changeView} />
-       
-        </div>
+      </div>
     );
 
+   
     const normalView = () => (
-      <Navigation logout={logout} data={data}/>
+      <Navigation logout={logout} data={data} />
     );
 
     return (
@@ -88,7 +87,7 @@ class App extends React.Component {
          
             {this.state.isLoggedIn === 'false' ? <Route exact path="/" component={LoginView} />:
               <div><Route path="/navigate" component={normalView} /> <Redirect
-              from="/" to="/navigate" /></div>} 
+              from="/" to="/navigate" /> </div>} 
         </Switch>
         
       </Router>

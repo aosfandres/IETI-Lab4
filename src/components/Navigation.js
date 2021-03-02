@@ -17,7 +17,10 @@ import PersonIcon from '@material-ui/icons/Person';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Task from './Task';
+import NewTask from './NewTask';
 import Container from '@material-ui/core/Container';
+import Fab from '@material-ui/core/Fab'; 
+import AddIcon from '@material-ui/icons/Add';
 
 const drawerWidth = 240;
 
@@ -95,9 +98,14 @@ export default function Navigation(props) {
         localStorage.setItem('isLoggedIn', 'false');
         //alert("asdasd   ")
         props.logout();
-
     }
-
+    /* const handleNewTask = () => {
+        //window.location.href = "/newtask";
+        localStorage.setItem("newT", true);
+        //props.new();
+     
+    };
+ */
     return (<div >
         <div className={classes.root}>
 
@@ -177,7 +185,7 @@ export default function Navigation(props) {
         </div >
         <br /><br /><br />
         <Container maxWidth="xs">
-
+          
             <Task description="Hacer lo hacible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Comer lo comible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Dormir durmiendo" responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
@@ -185,7 +193,7 @@ export default function Navigation(props) {
             <Task description="Pensar lo pensable " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Beber lo beblible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Hacer lo posible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
-
+            <NewTask />
         </Container></div >
     );
 }

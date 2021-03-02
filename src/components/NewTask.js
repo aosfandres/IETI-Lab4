@@ -1,71 +1,62 @@
-import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField';
 import CheckRoundedIcon from '@material-ui/icons/CheckRounded';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import AddIcon from '@material-ui/icons/Add';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
-import Fab from '@material-ui/core/Fab'; 
+import Fab from '@material-ui/core/Fab';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
 import './Login.css';
 
-//inspirado de https://github.com/mui-org/material-ui/ 
-export default class Login extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = { descripcion: '', responsable: '', status: '', dueDate: '' };
-        this.handleDescripcionChange = this.handleDescripcionChange.bind(this);
-        this.handleResponsableChange = this.handleResponsableChange.bind(this);
-        this.handleStatusChange = this.handleStatusChange.bind(this);
-        this.handleDateChange = this.handleDateChange.bind(this);
+//inspirado de https://material-ui.com/es/components/dialogs/
+export default function NewTask() {
+    const [open, setOpen] = React.useState(false);
+    const [description, setDescription] = useState("");
+    const [responsible, setResponsible] = useState("");
+    const [status, setStatus] = useState("");
+    const [dueDate, setDueDate] = useState("");
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+    const handleDescriptionChange = (e) => {
+        setDescription(e.target.value);
     }
 
-    handleDescripcionChange = (e) => {
-        this.setState({
-            user: e.target.value
-        });
+    const handleResponsibleChange = (e) => {
+        setResponsible(e.target.value);
     }
 
-    handleResponsableChange = (e) => {
-        this.setState({
-            pass: e.target.value
-        });
+    const handleStatusChange = (e) => {
+        setStatus(e.target.value);
     }
-    handleStatusChange = (e) => {
-        this.setState({
-            pass: e.target.value
-        });
-    }
-    handleDateChange = (e) => {
-        this.setState({
-            pass: e.target.value
-        });
+
+    const handleDueDateChange = (e) => {
+        setDueDate(e.target.value);
     }
 
 
-    /* 
-      handleStatusChange = (e) => {
-        e.preventDefault();
-        if (this.state.user === localStorage.getItem('user') && this.state.pass === localStorage.getItem('pass')) {
-          //alert("jelou");
-          //this.props.settrue();
-          this.props.changeView();
-          localStorage.setItem('isLoggedIn', 'true');
-               //alert(localStorage.getItem('isLoggedIn'));
-        }
-      } */
 
-
-    render() {
-        return (
-            <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                <div className="paper">
-                    <Typography component="h1" variant="h3">
-                        New Task
-                    </Typography>
+    return (
+        <div>
+            <Fab color="primary" aria-label="add" onClick={handleClickOpen}>
+                <AddIcon />
+            </Fab>
+            <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
+                <DialogTitle id="form-dialog-title" disableTypography>
+                    <Typography variant="h3" style={{ textAlign: "center" }}>New Task</Typography>
+                </DialogTitle>
+                <DialogContent>
                     <form className="form">
                         <TextField
                             variant="outlined"
@@ -76,7 +67,7 @@ export default class Login extends React.Component {
                             label="descripcion"
                             name="descripcion"
                             autoComplete="descripcion"
-                            onChange={this.handleDescripcionChange}
+                            onChange={handleDescriptionChange}
                         />
                         <TextField
                             variant="outlined"
@@ -87,18 +78,18 @@ export default class Login extends React.Component {
                             label="responsable"
                             type="responsable"
                             id="responsable"
-                            onChange={this.handleResponsableChange}
+                            onChange={handleResponsibleChange}
                         />
                         <FormControl margin="normal" required fullWidth>
                             <InputLabel htmlFor="status">Status</InputLabel>
                             <Select
                                 labelId="status"
                                 id="status"
-                                onChange={this.handleStatusChange}
+                                onChange={handleStatusChange}
                             >
-                            <MenuItem value={"Ready"}>Ready</MenuItem>
-                            <MenuItem value={"In Progress"}>In Progress</MenuItem>
-                            <MenuItem value={"Done"}>Done</MenuItem>
+                                <MenuItem value={"Ready"}>Ready</MenuItem>
+                                <MenuItem value={"In Progress"}>In Progress</MenuItem>
+                                <MenuItem value={"Done"}>Done</MenuItem>
                             </Select>
                         </FormControl>
                         <TextField
@@ -110,20 +101,24 @@ export default class Login extends React.Component {
                             label="dueDate"
                             type="dueDate"
                             id="dueDate"
-                            onChange={this.handleDateChange}
+                            onChange={handleDueDateChange}
                         />
                         <FormControl margin="normal" required fullWidth>
                             <div style={{ textAlign: "center" }}>
-                                <Fab style={{ backgroundColor: "green" }} aria-label="Cancel" >
+                                <Fab style={{ backgroundColor: "red" }} aria-label="Add" onClick={handleClose}>
+                                    <CloseRoundedIcon />
+                                </Fab>
+                                <Fab style={{ backgroundColor: "green" }} onClick={handleClose} >
                                     <CheckRoundedIcon />
                                 </Fab>
                             </div>
                         </FormControl>
                     </form>
-                </div>
-            </Container >
-        );
-    }
+                </DialogContent>
+            </Dialog>
+        </div>
+    );
+
 
 }
 

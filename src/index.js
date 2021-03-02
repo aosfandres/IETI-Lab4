@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import NewTask from './components/NewTask';
+import Navigation from './components/Navigation';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <NewTask />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
