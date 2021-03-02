@@ -1,110 +1,42 @@
-# TASK PLANNER IETI
-Andres Orlando Sotelo Fajardo
+![](images/react-material-heroku.png)
 
-#USO 
-- clone el repo
-- usar ```npm install```
-- visitar http://localhost:3000/ o visitar [![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://task-plannerbyasof.herokuapp.com/)
-- usuario : andres
-- password : sotelo
+<h1 align="center">1.4 Task Planner Project - Front End - Part 2</h1>
+
+[![npm](https://img.shields.io/badge/npm-v6.13.4-red.svg)](https://www.npmjs.com/)
+[![npx](https://img.shields.io/badge/dependencies-npx-orange)](https://www.npmjs.com/package/npx)
+[![material](https://img.shields.io/badge/dependencies-material--ui-yellow)](https://material-ui.com/)
+[![react-router](https://img.shields.io/badge/dependencies-react--router-blue)](https://reacttraining.com/react-router/)
+[![heroku](https://img.shields.io/badge/%E2%86%91_Deploy_to-Heroku-7056bf.svg)](https://www.heroku.com/)
 
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/1.PNG)
+1. Open the project created on Part 1.
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/2.PNG)
+2. Create the NewTask.js component and the corresponding CSS file if needed (use the Material-UI library!).
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/3.PNG)
+![](images/new-task.png)
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/4.PNG)
+3. Modify the App.js component so that it uses [BrowserRouter](https://reacttraining.com/react-router/web/example/basic) to enable the navigation from a "+" [floating action button](https://material-ui.com/components/floating-action-button/) in the main view to take the user to the *NewTask* component.
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/5.PNG)
+4. Implement the logic to be able to connect the main view so that the new task is added to the list on the main view when the user clicks the add button.
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/6.PNG)
+Remember the model to represent a task:
+  ```javascript
+       {
+    	"description": "some description text ",
+    	"responsible": {
+    		"name": "Santiago Carrillo",
+    		"email": "sancarbar@gmail"
+    	},
+    	"status": "ready",
+    	"dueDate": 156464645646
+    }
+```
+5. Implement the UserProfile.js component to update the user profile details (make sure this updates your navigationDrawer in your main view):
 
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/7.PNG)
+![](images/update-profile.png)
 
-#DESPLIEGUE
+6. Create a [Modal](https://material-ui.com/utils/modal/) to display the options for filtering the list of tasks.
 
-[![Deployed to Heroku](https://www.herokucdn.com/deploy/button.png)](https://task-plannerbyasof.herokuapp.com/)
+![](images/add-filter.png)
 
-- EL DESPLIEGUE EN AZURE NO FUE EFECTIVO, DEJO EVIDENCIA
-- El pipeline quedo creado en azure devOps
-
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/dev.PNG)
-
-- Error de azure
-
-![](https://github.com/aosfandres/IETI-Lab3/blob/main/images/error1.PNG)
-
-por este error no fue posible desplegar la aplicacion en azure
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+7. Implement the logic so that the data is filtered according to the applied filters.
