@@ -185,15 +185,24 @@ export default function Navigation(props) {
         </div >
         <br /><br /><br />
         <Container maxWidth="xs">
-          
-            <Task description="Hacer lo hacible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
+          <div>
+          {props.items.map((item,i) => {
+                return (<Task key={i}
+                    description={item.description}
+                    responsible={item.responsible.name}
+                    status={item.status}
+                    dueDate={item.dueDate}/>
+                );
+            })}
+          </div>
+       {/*      <Task description="Hacer lo hacible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Comer lo comible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Dormir durmiendo" responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="trabajar lo trabajable " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Pensar lo pensable " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
             <Task description="Beber lo beblible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
-            <Task description="Hacer lo posible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" />
-            <NewTask />
+            <Task description="Hacer lo posible " responsible="Andres Sotelo" status="ready" dueDate="156464645646" /> */}
+            <NewTask new={props.new}/>
         </Container></div >
     );
 }

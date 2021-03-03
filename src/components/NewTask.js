@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 import './Login.css';
 
 //inspirado de https://material-ui.com/es/components/dialogs/
-export default function NewTask() {
+export default function NewTask(props) {
     const [open, setOpen] = React.useState(false);
     const [description, setDescription] = useState("");
     const [responsible, setResponsible] = useState("");
@@ -45,7 +45,24 @@ export default function NewTask() {
         setDueDate(e.target.value);
     }
 
-
+    const handleNewTask = (e) => {
+        e.preventDefault();
+        if(description === "" || responsible === "" || status === null ||  dueDate === ""){
+            alert("Se deben completar todos los campos");
+        } else {
+            const newTask = {
+                "description": description,
+                "responsible": {
+                    "name": responsible,
+                    "email": responsible+"@gmail.com"
+                },
+                "status": status,
+                "dueDate": dueDate
+            };
+            props.new(newTask);
+            setOpen(false);
+        }
+    }
 
     return (
         <div>
@@ -108,7 +125,7 @@ export default function NewTask() {
                                 <Fab style={{ backgroundColor: "red" }} aria-label="Add" onClick={handleClose}>
                                     <CloseRoundedIcon />
                                 </Fab>
-                                <Fab style={{ backgroundColor: "green" }} onClick={handleClose} >
+                                <Fab style={{ backgroundColor: "green" }} onClick={handleNewTask} >
                                     <CheckRoundedIcon />
                                 </Fab>
                             </div>
