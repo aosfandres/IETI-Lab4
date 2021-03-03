@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Login from "./components/Login";
-import NewTask from "./components/NewTask";
+import UserProfile from "./components/UserProfile";
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import Navigation from './components/Navigation';
 
@@ -11,7 +11,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: 'false', data: [
+      isLoggedIn: localStorage.getItem('isLoggedIn'), data: [
         {
           "description": "Hacer lo hacible ",
           "responsible": {
@@ -62,13 +62,21 @@ class App extends React.Component {
   render() {
 
     const changeView = () => {
-      //window.location.href = "/navigation";
+      window.location.href = "/navigate";
       this.setState({ isLoggedIn: 'true' });
+      
+    }
+    const changeViewProfile = () => {
+      window.location.href = "/profile";
+    }
+    const changeViewNavigation = () => {
+      window.location.href = "/navigate";
     }
 
     const logout = () => {
       window.location.href = "/";
       this.changeStateFalse();
+      localStorage.setItem('isLoggedIn','false')
     }
 
     const LoginView = () => (
@@ -78,8 +86,12 @@ class App extends React.Component {
     );
 
     const normalView = () => (
-      <Navigation logout={logout} items={this.state.data} new={newTask} />
+      <Navigation logout={logout} items={this.state.data} new={newTask} profile={changeViewProfile} />
     );
+    const profileView = () => (
+      <UserProfile update={changeViewNavigation} />
+    );
+
 
     const newTask = (task) => {
 
@@ -93,9 +105,12 @@ class App extends React.Component {
 
         <Switch>
 
-          {this.state.isLoggedIn === 'false' ? <Route exact path="/" component={LoginView} /> :
-            <div><Route path="/navigate" component={normalView} /> <Redirect
-              from="/" to="/navigate" /> </div>}
+          <Route exact path="/" component={this.state.isLoggedIn === 'true' ? normalView : LoginView} />
+          <Route path="/navigate" component={this.state.isLoggedIn  === 'true' ? normalView : LoginView}/>
+          <Route path="/profile" component={this.state.isLoggedIn  === 'true' ? profileView : LoginView} />
+          {/* {this.state.isLoggedIn === 'false' ? <Route exact path="/" component={LoginView} /> :
+            <div><Route path="/navigate" component={normalView} />  </div>}
+          <Route path="/profile" component={profileView} /> */}
         </Switch>
 
       </Router>

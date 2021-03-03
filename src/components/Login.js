@@ -13,9 +13,9 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = { user: '', pass: '' };
-    //localStorage.setItem('isLoggedIn', 'false');
-    localStorage.setItem('user', 'andres');
-    localStorage.setItem('pass', 'sotelo');
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.setItem('user','andres')
+    localStorage.setItem('pass','sotelo')
     this.handleUserChange = this.handleUserChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleLoginChange = this.handleLoginChange.bind(this);
