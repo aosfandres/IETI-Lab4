@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -16,7 +16,9 @@ import ListItem from '@material-ui/core/ListItem';
 import PersonIcon from '@material-ui/icons/Person';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import Button from '@material-ui/core/Button';
 import Task from './Task';
+import MyModal from './MyModal';
 import NewTask from './NewTask';
 import Container from '@material-ui/core/Container';
 import Fab from '@material-ui/core/Fab';
@@ -86,29 +88,42 @@ export default function Navigation(props) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
+    const [openModal, setOpenModal] = useState(false);
+    const [filters, setFilters] = useState({ responsible: {"name":"","email":""}, status: "", dueDate: "" });
 
+    const handleFilters = (filtersIN) => {
+        setFilters(filtersIN);
+    };
+    const handleOpenModal = () => {
+        setOpenModal(true);
+    };
+    const handleCloseModal = () => {
+        setOpenModal(false);
+    };
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };
     const logout = () => {
         localStorage.setItem('isLoggedIn', 'false');
-        //alert("asdasd   ")
         props.logout();
     }
-    const handleProfile =()=>{
+    const handleProfile = () => {
         props.profile();
     }
-    /* const handleNewTask = () => {
-        //window.location.href = "/newtask";
-        localStorage.setItem("newT", true);
-        //props.new();
-     
-    };
- */
+    var tasks = props.items;
+
+    if (filters.responsible.name !== "") {
+        tasks = tasks.filter(item => item.responsible.name === filters.responsible.name);
+    }
+    if (filters.status !== "") {
+        tasks = tasks.filter(item => item.status === filters.status);
+    } 
+    if (filters.dueDate !== "") {
+        tasks = tasks.filter(item => item.dueDate === filters.dueDate);
+    }
     return (<div >
         <div className={classes.root}>
 
@@ -169,6 +184,10 @@ export default function Navigation(props) {
 
                         </ListItem>
                     ))}
+                    <Button onClick={handleOpenModal}>
+                        Filter
+                    </Button>
+                    <MyModal open={openModal} closeAction={handleCloseModal} filters={handleFilters} />
                 </List>
                 <Divider />
                 <List>
@@ -189,7 +208,7 @@ export default function Navigation(props) {
         <br /><br /><br />
         <Container maxWidth="xs">
             <div>
-                {props.items.map((item, i) => {
+                {tasks.map((item, i) => {
                     return (<Task key={i}
                         description={item.description}
                         responsible={item.responsible.name}

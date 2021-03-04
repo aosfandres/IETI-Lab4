@@ -18,7 +18,7 @@ class App extends React.Component {
             "name": "Andres Sotelo",
             "email": "andres@gmail"
           },
-          "status": "ready",
+          "status": "Ready",
           "dueDate": 156464645646
         }, {
           "description": "Comer lo comible ",
@@ -26,7 +26,7 @@ class App extends React.Component {
             "name": "Andres Sotelo",
             "email": "andres@gmail"
           },
-          "status": "ready",
+          "status": "Ready",
           "dueDate": 156464645646
         }, {
           "description": "Dormir durmiendo",
@@ -34,7 +34,7 @@ class App extends React.Component {
             "name": "Andres Sotelo",
             "email": "andres@gmail"
           },
-          "status": "ready",
+          "status": "Ready",
           "dueDate": 156464645646
         }, {
           "description": "trabajr lo trabajable ",
@@ -42,7 +42,15 @@ class App extends React.Component {
             "name": "Andres Sotelo",
             "email": "andres@gmail"
           },
-          "status": "ready",
+          "status": "Done",
+          "dueDate": 156464645646
+        }, {
+          "description": "beber lo beblible ",
+          "responsible": {
+            "name": "Andres Sotelo",
+            "email": "andres@gmail"
+          },
+          "status": "Done",
           "dueDate": 156464645646
         }]
     };
@@ -102,17 +110,11 @@ class App extends React.Component {
 
     return (
       <Router>
-
         <Switch>
-
           <Route exact path="/" component={this.state.isLoggedIn === 'true' ? normalView : LoginView} />
           <Route path="/navigate" component={this.state.isLoggedIn  === 'true' ? normalView : LoginView}/>
           <Route path="/profile" component={this.state.isLoggedIn  === 'true' ? profileView : LoginView} />
-          {/* {this.state.isLoggedIn === 'false' ? <Route exact path="/" component={LoginView} /> :
-            <div><Route path="/navigate" component={normalView} />  </div>}
-          <Route path="/profile" component={profileView} /> */}
         </Switch>
-
       </Router>
     );
   }
